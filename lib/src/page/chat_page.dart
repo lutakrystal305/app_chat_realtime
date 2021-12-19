@@ -71,6 +71,7 @@ class _ChatPageState extends State<ChatPage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColor.secondColor,
           title: GestureDetector(
             onTap: () {
               Navigator.push(context,

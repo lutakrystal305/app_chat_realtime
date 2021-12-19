@@ -134,12 +134,19 @@ class _YourRoomPageState extends State<YourRoomPage> {
                                                                                   ),
                                                                                 ),
                                                                                 Container(
-                                                                                    width: 30,
-                                                                                    height: 50,
-                                                                                    decoration: const BoxDecoration(
-                                                                                      shape: BoxShape.circle,
-                                                                                      color: Colors.blueAccent,
-                                                                                    )),
+                                                                                  width: 30,
+                                                                                  height: 50,
+                                                                                  decoration: const BoxDecoration(
+                                                                                    shape: BoxShape.circle,
+                                                                                    //color: Colors.blueAccent,
+                                                                                  ),
+                                                                                  clipBehavior: Clip.antiAlias,
+                                                                                  child: e.avt != null && e.avt!.isNotEmpty
+                                                                                      ? Image.network(e.avt!, width: double.infinity, height: double.infinity, fit: BoxFit.cover)
+                                                                                      : Container(
+                                                                                          color: Colors.green,
+                                                                                        ),
+                                                                                ),
                                                                                 Container(
                                                                                   padding: const EdgeInsets.all(5.0),
                                                                                   child: Text(

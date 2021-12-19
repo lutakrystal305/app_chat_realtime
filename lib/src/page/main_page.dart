@@ -121,10 +121,10 @@ class _MainPageState extends State<MainPage> {
         BottomNavigationBarItem(icon: Icon(Icons.group), label: 'All')
       ],
       type: BottomNavigationBarType.fixed,
-      backgroundColor: Color(0xffffffff).withOpacity(0.9),
+      backgroundColor: Color(0xff0d1117).withOpacity(0.9),
       currentIndex: route,
-      selectedItemColor: AppColor.secondColor,
-      unselectedItemColor: Colors.grey[200],
+      selectedItemColor: Colors.green,
+      unselectedItemColor: Colors.grey[200]!.withOpacity(0.6),
       onTap: (value) => setState(() {
         route = value;
       }),

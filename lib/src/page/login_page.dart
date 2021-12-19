@@ -6,6 +6,7 @@ import 'package:message_socket_flutter/src/bloc/socket_bloc.dart';
 import 'package:message_socket_flutter/src/page/home_page.dart';
 import 'package:message_socket_flutter/src/page/main_page.dart';
 import 'package:message_socket_flutter/src/page/signup_page.dart';
+import 'package:message_socket_flutter/src/value/app_assets.dart';
 import 'package:message_socket_flutter/src/value/app_color.dart';
 import 'package:message_socket_flutter/src/value/app_font.dart';
 import 'package:message_socket_flutter/src/widgets/dialogs/loading_dialog.dart';
@@ -48,91 +49,158 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.primaryColor,
       appBar: AppBar(
         title: const Text('Sign In'),
         backgroundColor: AppColor.secondColor,
         elevation: 0.0,
       ),
       body: Container(
-        child: Center(
+        child: SingleChildScrollView(
           child: Container(
-              child: Column(
-            children: [
-              Container(
-                child: TextField(
-                  controller: _mailController,
-                  style: AppStyle.h5.copyWith(color: Colors.black),
-                  decoration: InputDecoration(
-                      labelText: 'EMAIL',
-                      labelStyle:
-                          AppStyle.h4.copyWith(color: AppColor.blackGrey)),
+            child: Column(
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(top: 15.0),
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        Image.asset(AppAssets.logo,
+                            width: 70, height: 50, fit: BoxFit.contain),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            'KMess',
+                            style: AppStyle.h4.copyWith(color: Colors.green),
+                          ),
+                        )
+                      ],
+                    )),
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  child: RichText(
+                      text: TextSpan(
+                          text: 'Welcome to my app, you ',
+                          style: AppStyle.h5,
+                          children: [
+                        TextSpan(
+                            text: 'must signed in',
+                            style: AppStyle.h5.copyWith(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20))
+                      ])),
                 ),
-              ),
-              Container(
-                child: Stack(
-                  alignment: AlignmentDirectional.centerEnd,
-                  children: [
-                    TextField(
-                      controller: _passController,
-                      style: AppStyle.h5.copyWith(color: Colors.black),
-                      obscureText: !_show,
-                      decoration: InputDecoration(
-                          labelText: 'PASSWORD',
-                          labelStyle:
-                              AppStyle.h4.copyWith(color: AppColor.blackGrey)),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _show = !_show;
-                        });
-                      },
-                      child: _show
-                          ? const Text(
-                              'HIDE',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          : const Text('SHOW',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold)),
-                    )
-                  ],
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    onSignIn();
-                  },
-                  child: Text(
-                    'SIGN IN!',
-                    style: AppStyle.h3,
-                  )),
-              RichText(
-                text: TextSpan(
-                    text: "If you don't a account, you can ",
-                    style: AppStyle.h5.copyWith(color: AppColor.blackGrey),
-                    children: [
-                      TextSpan(
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignUpPage()));
-                            },
-                          text: 'Sign Up!',
-                          style: const TextStyle(
-                              color: Colors.blue, fontSize: 16.0))
-                    ]),
-              )
-            ],
-          )),
+                Container(
+                    margin: const EdgeInsets.all(10.0),
+                    child: Column(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          //margin: const EdgeInsets.all(5.0),
+                          child: TextField(
+                            controller: _mailController,
+                            style: AppStyle.h5.copyWith(color: Colors.white),
+                            decoration: InputDecoration(
+                                border: const OutlineInputBorder(),
+                                enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        width: 1.0, color: Colors.green)),
+                                prefixIcon: const Icon(
+                                  Icons.person,
+                                  color: Colors.green,
+                                ),
+                                labelText: 'EMAIL',
+                                labelStyle: AppStyle.h4
+                                    .copyWith(color: AppColor.whiteGrey)),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          //height: 100,
+                          //margin: const EdgeInsets.all(5.0),
+                          child: Stack(
+                            alignment: AlignmentDirectional.centerEnd,
+                            children: [
+                              TextField(
+                                controller: _passController,
+                                style:
+                                    AppStyle.h5.copyWith(color: Colors.white),
+                                obscureText: !_show,
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            width: 1.0, color: Colors.green)),
+                                    prefixIcon: const Icon(
+                                      Icons.password,
+                                      color: Colors.green,
+                                    ),
+                                    labelText: 'PASSWORD',
+                                    labelStyle: AppStyle.h4
+                                        .copyWith(color: AppColor.whiteGrey)),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _show = !_show;
+                                  });
+                                },
+                                child: _show
+                                    ? Text(
+                                        'HIDE  ',
+                                        style: TextStyle(
+                                            color: Colors.green[700],
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    : Text('SHOW  ',
+                                        style: TextStyle(
+                                            color: Colors.green[700],
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold)),
+                              )
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(10.0),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                onSignIn();
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  primary: AppColor.secondColor!),
+                              child: Text(
+                                'SIGN IN!',
+                                style: AppStyle.h3,
+                              )),
+                        ),
+                        RichText(
+                          text: TextSpan(
+                              text: "If you don't a account, you can ",
+                              style: AppStyle.h5
+                                  .copyWith(color: AppColor.blackGrey),
+                              children: [
+                                TextSpan(
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const SignUpPage()));
+                                      },
+                                    text: 'Sign Up!',
+                                    style: const TextStyle(
+                                        color: Colors.green, fontSize: 16.0))
+                              ]),
+                        )
+                      ],
+                    )),
+              ],
+            ),
+          ),
         ),
       ),
     );
